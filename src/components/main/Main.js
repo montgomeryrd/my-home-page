@@ -1,10 +1,31 @@
 import React from 'react';
+import robinhood from '../../assets/robinhood.png';
+import marketwatch from '../../assets/marketwatch.png';
+import reddit from '../../assets/reddit.png'
+import codecademy from '../../assets/codecademy.png';
+import github from '../../assets/github.png';
 
-const Coding = (props) => {
+const Main = (props) => {
     return (
-        <div>
-
+        <div className="page-links">
+            <ul>
+                <li className="links">
+                    <a href="https://robinhood.com/" rel="noopener noreferrer" target="_blank"><img src={robinhood} alt="robinhood"/>Robinhood</a>
+                </li>
+                <li className="links">
+                    <a href="https://www.marketwatch.com/" rel="noopener noreferrer" target="_blank"><img src={marketwatch} alt="marketwatch"/>MarketWatch</a>
+                </li>
+                <li className="links">
+                    <a href="https://www.reddit.com/r/all/" rel="noopener noreferrer" target="_blank"><img src={reddit} alt="reddit"/>Reddit</a>
+                </li>
+                <li className="links">
+                    <a href="https://www.codecademy.com/learn" rel="noopener noreferrer" target="_blank"><img src={codecademy} alt="codecademy"/>Codecademy</a>
+                </li>
+                <li className="links">
+                    <a href="https://github.com/montgomeryrd" rel="noopener noreferrer" target="_blank"><img src={github} alt="github"/>Github</a>
+                </li>
+            </ul>
         </div>
     )
 }
-export default Coding;
+export default Main;

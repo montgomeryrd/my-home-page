@@ -4,25 +4,25 @@ import SidebarForm from './SidebarForm';
 const Sidebar = (props) => {
     const [form, setForm] = useState(false);
     const toggle = () => setForm(!form);
-    let playingtitle = "", playinglink = "";
+    let songtitle = "sad face. - one day", songlink = "https://www.youtube.com/embed/nroq3jRSLHg";
 
-    function song(title, content){
-        playingtitle = title;
-        playinglink = content;
+    function populateIFrame(title, link){
+        songtitle = title;
+        songlink = link;
+        console.log(songtitle, songlink);
     };
 
     const links = props.sidebarlist.length ? (
-        props.sidebarlist.map((link, index) => {
+        props.sidebarlist.map((song, index) => {
             return (
                 <div className="links-container" unselectable="on" key={index}>
-                    <h2>{link.title}</h2>
-                    <p onClick={() => {song(link.title, link.content)}}>play</p>
+                    <span onClick={() => {populateIFrame(song.title, song.link)}}>{song.title}</span>
                 </div>
             )
         })
     ) : (
         <div>
-
+            <p>empty</p>
         </div>
     );
 
@@ -36,25 +36,21 @@ const Sidebar = (props) => {
                         sidebartitle = {props.sidebartitle}
                         sidebarlink = {props.sidebarlink}
                         sidebarlist = {props.sidebarlist}
-                        handleSidebarChange = {props.handleSidebarChange}
+                        handleSidebarTitleChange = {props.handleSidebarTitleChange}
+                        handleSidebarLinkChange = {props.handleSidebarLinkChange}
                         handleSidebarSubmit = {props.handleSidebarSubmit}
                     />
                 </div>
             :
                 <div>
-                    {links}
+                    
                 </div>
             }
             <div>
-            <iframe 
-                title={playingtitle}
-                width="560" 
-                height="315" 
-                src={playinglink}
-                frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-            />
+                {links}
+            </div>
+            <div>
+            <iframe title={songtitle} width="560" height="315" src={songlink} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     )
