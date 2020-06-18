@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Coding = (props) => {
+const Finances = (props) => {
     return (
         <div>
-
+            <h1>finances</h1>
         </div>
     )
 }
-export default Coding;
+export default Finances;

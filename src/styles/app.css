@@ -1,9 +1,122 @@
+/* Sections */
+/* body {
+    background-image: url('../assets/back.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    color: white;
+} */
+.App {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    font-family: 'MuseoModerno', cursive;
+}
+.sidebar-container {
+    position: relative;
+    min-width: 160px;
+    /* width: 35%; */
+}
+.main-container {
+    position: relative;
+    min-width: 180px;
+}
+.content-container {
+    position: relative;
+    min-width: 200px;
+    width: 40%;
+}
 
+/* Sidebar Styles */
+.sidebar-content img {
+    width: 20px;
+    padding: 4px;
+    margin-top: 6px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+.sidebarform-content {
+    display: block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.sidebar-form input {
+    display: flex;
+    flex-direction: column;
+    background: none; 
+    width: 130px;
+    font-family: 'MuseoModerno', cursive;
+    font-size: .8rem;
+    border: none;
+    border-bottom:solid .5px #cacbbc;
+}
+.sidebar-form-btn {
+    margin-top: 5px;
+    background: none;
+    font-family: 'MuseoModerno', cursive;
+    color: #c1c1d7;
+    border: none;
+    transition: 700ms ease-in-out;
+}
+.sidebar-form-btn:hover {
+    transition: 700ms ease-in-out;
+    color: #72E5BE;
+}
+.links-container {
+    margin-top: 3px;
+}
+.link {
+    font-size: .6rem;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 3px;
+    border-radius: 5mm;
+    transition: 700ms;
+}
+.link:hover {
+    color: #72E5BE;
+    transition: 700ms;
+}
+.iframe-links {
+    margin-top: 5px;
+    margin-left: 5px;
+}
 
 /* Main Styles */
-.page-links a {
+.main-content {
+    margin-top: 10px;
+}
+.main-content a {
     text-decoration: none;
 }
-.page-links img {
-    width: 5%;
+.main-content img {
+    width:25px;
+    border-radius: 2mm;
 }
+.main-content ul li {
+    display: block;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+
+/* Content Styles */
+.navigation-bar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px;
+}
+.navigation-bar-container img {
+    padding: 5px;
+    width: 20px;
+}
+/* .content-view {
+    border: solid 1px red;
+}
+.content {
+    border: solid 1px blue;
+} */
