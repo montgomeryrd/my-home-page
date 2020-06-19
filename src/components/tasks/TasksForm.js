@@ -2,8 +2,8 @@ import React from 'react';
 
 const TasksForm = (props) => {
     return (
-        <div className="sidebarform-content">
-            <form className="sidebar-form" onSubmit={props.handleSubmit}>
+        <div className="tasksform-content">
+            <form className="tasks-form" onSubmit={props.handleSubmit}>
             <textarea 
                 id="tasks" 
                 name="tasks-list" 
@@ -15,7 +15,7 @@ const TasksForm = (props) => {
                 required={true}
                 placeholder="What is today's agenda?"
             />
-            <button className="sidebar-form-btn" onSubmit={props.handleSubmit}>add</button>
+            <button className="tasks-form-btn" onSubmit={props.handleSubmit}>add</button>
             </form>
         </div>
     )

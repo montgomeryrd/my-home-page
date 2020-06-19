@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TasksForm from '../tasks/TasksForm';
 
 const Tasks = (props) => {
+
+    const [show, setShow] = useState(false);
+    const toggle = () => setShow(!show);
 
     const list = props.taskslist.length ? (
         props.taskslist.map((task, index) => {
@@ -16,7 +19,7 @@ const Tasks = (props) => {
             )
         })
     ) : ( 
-        <div className="supplylist-container">
+        <div className="tasks-form-container">
             <TasksForm 
                 value={props.tasksvalue}
                 taskslist={props.taskslist}
@@ -27,9 +30,22 @@ const Tasks = (props) => {
     )
 
     return (
-        <div>
-            <h1>tasks</h1>
-            {list}
+        <div className="my-tasks-container">
+            <h1 onClick={toggle}>tasks</h1>
+            {show ?
+                <TasksForm 
+                    value={props.tasksvalue}
+                    taskslist={props.taskslist}
+                    handleChange={props.handleTasksChange}
+                    handleSubmit={props.handleTasksSubmit}
+                />
+            :
+                <div>
+                </div>
+            }
+            <div className="my-tasks">
+                {list}
+            </div>
             {/* <button onClick={props.removeCompletedTasks}>remove</button> */}
         </div>
     )

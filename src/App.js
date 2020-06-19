@@ -149,7 +149,7 @@ class App extends React.Component {
   addTasks = (list) => {
     list = this.state.tasksvalue.match(/(.+)/g);
     list = list.filter(item => item !== "");
-    this.setState({taskslist : list}, () => {
+    this.setState({taskslist : this.state.taskslist.concat(list)}, () => {
         console.log("taskslist ", this.state.taskslist);
     });
   }
