@@ -13,7 +13,7 @@ const TasksForm = (props) => {
                 value={props.value}
                 onChange={props.handleChange}
                 required={true}
-                placeholder="What do you need to do today?"
+                placeholder="What is today's agenda?"
             />
             <button className="sidebar-form-btn" onSubmit={props.handleSubmit}>add</button>
             </form>

@@ -1,8 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+
 import Sidebar from './components/sidebar/Sidebar';
 import Main from './components/main/Main';
-import Content from './components/content/Content';
 import './styles/app.css';
+
+import Coding from './components/coding/Coding';
+import Workouts from './components/workouts/Workouts';
+import Finances from './components/finances/Finances';
+import Tasks from './components/tasks/Tasks';
+import Goals from './components/goals/Goals';
+
+import coding from './assets/coding.png';
+import workouts from './assets/workouts.png';
+import finances from './assets/finances.png';
+import tasks from './assets/tasks.png';
+import goals from './assets/goals.png';
 
 class App extends React.Component {
   constructor(props) {
@@ -124,7 +137,9 @@ class App extends React.Component {
   // Finances Functions
   // Tasks Functions
   handleTasksChange = (e) => {
-    this.setState({tasksvalue : e.target.value});
+    this.setState({tasksvalue : e.target.value}, () => {
+      console.log(this.state.tasksvalue);
+    });
   }
   handleTasksSubmit = (e) => {
     e.preventDefault();
@@ -138,27 +153,27 @@ class App extends React.Component {
         console.log("taskslist ", this.state.taskslist);
     });
   }
-  completeTask = (index) => {
-    if(this.state.complete.includes(this.state.taskslist[index])) {
-        const i = this.state.complete.indexOf(this.state.taskslist[index]);
-        let complete = this.state.complete;
-        complete.splice(i, 1);
-        this.setState({complete : complete}, () => {
-            console.log("complete ", this.state.complete);
-        });
-    } else {
-        const complete = [...this.state.complete, this.state.taskslist[index]];
-        this.setState({complete : complete}, () => {
-            console.log("complete ",this.state.complete);
-        });
-    }
-  }
-  removeCompletedTasks = (array) => {
-      let taskslist = [], complete = [];
-      this.state.taskslist.forEach(item => !this.state.complete.includes(item) ? taskslist.push(item) : item);
-      this.setState({taskslist : taskslist});
-      this.setState({complete : complete});
-  }
+  // completeTask = (index) => {
+  //   if(this.state.complete.includes(this.state.taskslist[index])) {
+  //       const i = this.state.complete.indexOf(this.state.taskslist[index]);
+  //       let complete = this.state.complete;
+  //       complete.splice(i, 1);
+  //       this.setState({complete : complete}, () => {
+  //           console.log("complete ", this.state.complete);
+  //       });
+  //   } else {
+  //       const complete = [...this.state.complete, this.state.taskslist[index]];
+  //       this.setState({complete : complete}, () => {
+  //           console.log("complete ",this.state.complete);
+  //       });
+  //   }
+  // }
+  // removeCompletedTasks = (array) => {
+  //     let taskslist = [], complete = [];
+  //     this.state.taskslist.forEach(item => !this.state.complete.includes(item) ? taskslist.push(item) : item);
+  //     this.setState({taskslist : taskslist});
+  //     this.setState({complete : complete});
+  // }
   // Goals Functions
 
   render() {
@@ -175,26 +190,65 @@ class App extends React.Component {
             handleSidebarSubmit = {this.handleSidebarSubmit}    
           />
         </div>
+        <div className="spacer"></div>
         <div className="main-container">
           <Main />
         </div>
+        <div className="spacer"></div>
         <div className="content-container">
-          <Content 
-            codevalue = {this.state.codevalue} 
-            codelist = {this.state.codelist} 
-            workoutsvalue = {this.state.workoutsvalue} 
-            workoutslist = {this.state.workoutslist} 
-            financesvalue = {this.state.financesvalue} 
-            financeslist = {this.state.financeslist} 
-            tasksvalue = {this.state.tasksvalue} 
-            taskslist = {this.state.taskslist} 
-            handleTasksChange = {this.handleTasksChange}
-            handleTasksSubmit = {this.handleTasksSubmit}
-            completeTask = {this.completeTask}
-            removeCompletedTasks = {this.removeCompletedTasks}
-            goalsvalue = {this.state.goalsvalue}
-            goalslist = {this.state.goalslist}
-          />
+            <Router>
+                <div className="navigation-bar-container">
+                    <NavLink to="/coding" style={{textDecoration: 'none'}}>
+                        <img src={coding} alt="coding"/>
+                    </NavLink>
+                    <NavLink to="/workouts" style={{textDecoration: 'none'}}>
+                        <img src={workouts} alt="workouts"/>
+                    </NavLink>
+                    <NavLink to="/finances" style={{textDecoration: 'none'}}>
+                        <img src={finances} alt="finances"/>
+                    </NavLink>
+                    <NavLink to="/tasks" style={{textDecoration: 'none'}}>
+                        <img src={tasks} alt="tasks"/>
+                    </NavLink>
+                    <NavLink to="/goals" style={{textDecoration: 'none'}}>
+                        <img src={goals} alt="goals"/>
+                    </NavLink>
+                </div>
+                <div className="content">
+                    <Route path="/coding" render={props =>
+                        (<Coding
+
+                        />)
+                    }/>
+                    <Route path="/workouts" render={props =>
+                        (<Workouts
+                        
+                        />)
+                    }/>
+                    <Route path="/finances" render={props =>
+                        (<Finances
+                        
+                        />)
+                    }/>
+                    <Route path="/tasks" render={props =>
+                        (<Tasks 
+                          tasksvalue = {this.state.tasksvalue} 
+                          taskslist = {this.state.taskslist} 
+                          handleTasksChange = {this.handleTasksChange}
+                          handleTasksSubmit = {this.handleTasksSubmit}
+                          // completeTask = {this.completeTask}
+                          // removeCompletedTasks = {this.removeCompletedTasks}
+                        />)
+                    }/>
+                    <Route path="/goals" render={props =>
+                        (<Goals
+                        
+                        />)
+                    }/>
+                </div>
+            </Router>
+            <div>
+            </div>
         </div>
       </div>
     );
