@@ -199,6 +199,9 @@ class App extends React.Component {
     this.setState({taskslist : taskslist});
     this.setState({complete : []});
   }
+  clearAllTasks = () => {
+    this.setState({taskslist : []});
+  }
   // Goals Functions
 
   render() {
@@ -214,10 +217,6 @@ class App extends React.Component {
             handleSidebarLinkChange = {this.handleSidebarLinkChange}
             handleSidebarSubmit = {this.handleSidebarSubmit}    
           />
-        </div>
-        <div className="spacer"></div>
-        <div className="main-container">
-          <Main />
         </div>
         <div className="spacer"></div>
         <div className="content-container">
@@ -271,6 +270,7 @@ class App extends React.Component {
                           handleTasksSubmit = {this.handleTasksSubmit}
                           completeTask = {this.completeTask}
                           removeCompletedTasks = {this.removeCompletedTasks}
+                          clearAllTasks = {this.clearAllTasks}
                         />)
                     }/>
                     <Route path="/goals" render={props =>
@@ -280,8 +280,10 @@ class App extends React.Component {
                     }/>
                 </div>
             </Router>
-            <div>
-            </div>
+        </div>
+        <div className="spacer"></div>
+        <div className="main-container">
+          <Main />
         </div>
       </div>
     );

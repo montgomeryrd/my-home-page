@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TasksForm from '../tasks/TasksForm';
 
 const Tasks = (props) => {
+
+    const [clear, setClear] = useState(false);
+    const toggle = () => setClear(!clear);
 
     const list = props.taskslist.length ? (
         props.taskslist.map((task, index) => {
@@ -26,7 +29,18 @@ const Tasks = (props) => {
         
     return (
         <div className="my-tasks-container">
-            <h1>tasks</h1>
+            <h1 onClick={toggle}>tasks</h1>
+            {clear && list.length ?
+                <div className="clear">
+                    <span>empty tasks list?</span>
+                    <div className="choice">
+                        <span onClick={() => {props.clearAllTasks();toggle()}}>yes</span>
+                        <span onClick={toggle}>no</span>
+                    </div>
+                </div>
+            :   
+                <div></div>
+            }
             <div className="my-tasks">
                 {list}
             </div>
