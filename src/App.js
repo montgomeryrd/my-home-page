@@ -41,14 +41,11 @@ class App extends React.Component {
         this._codelist = value;
       },
       // Workouts State
-      workoutsvalue : "",
-      _workoutslist : [],
-      get workoutslist() {
-        return this._workoutslist;
-      },
-      set workoutslist(value) {
-        this._workoutslist = value;
-      },
+      chest : "lame",
+      back : "lame",
+      shoulders : "lame",
+      arms : "lame",
+      legs : "lame",
       // Finances State
       financesvalue : "",
       _financeslist : [],
@@ -84,18 +81,20 @@ class App extends React.Component {
         this._goalslist = value;
       }
     }
-    // Sidebar Handles
+    // Sidebar Binds
     this.handleSidebarTitleChange = this.handleSidebarTitleChange.bind(this);
     this.handleSidebarLinkChange = this.handleSidebarLinkChange.bind(this);
     this.handleSidebarSubmit = this.handleSidebarSubmit.bind(this);
     this.removeYouTubeLink = this.removeYouTubeLink.bind(this);
-    // Coding Handles
-    // Workouts Handles
-    // Finances Handles
-    // Tasks Handles
+    // Coding Binds
+    // Workouts Binds
+    this.changeDivName = this.changeDivName.bind(this);
+    this.refreshWorkouts = this.refreshWorkouts.bind(this);
+    // Finances Binds
+    // Tasks Binds
     this.handleTasksChange = this.handleTasksChange.bind(this);
     this.handleTasksSubmit = this.handleTasksSubmit.bind(this);
-    // Goals Handles
+    // Goals Binds
   }
   // componentDidMount() {3
   //   try {
@@ -134,6 +133,37 @@ class App extends React.Component {
   }
   // Coding Functions
   // Workouts Functions
+  changeDivName(val) {
+    switch(val) {
+      case "chest" : 
+        this.state.chest === "lame" ? this.setState({chest : "highlighted"}) : this.setState({chest : "lame"});
+        break;
+      case "back" : 
+        this.state.back === "lame" ? this.setState({back : "highlighted"}) : this.setState({back : "lame"});
+        break;
+      case "shoulders" : 
+        this.state.shoulders === "lame" ? this.setState({shoulders : "highlighted"}) : this.setState({shoulders : "lame"});
+        break;
+      case "arms" : 
+        this.state.arms === "lame" ? this.setState({arms : "highlighted"}) : this.setState({arms : "lame"});
+        break;
+      case "legs" : 
+        this.state.legs === "lame" ? this.setState({legs : "highlighted"}) : this.setState({legs : "lame"});
+        break;
+      default : throw new Error("Error");
+    }
+  }
+  refreshWorkouts = () => {
+    this.setState({chest : "lame"}, () => {
+      this.setState({back : "lame"}, () => {
+        this.setState({shoulders : "lame"}, () => {
+          this.setState({arms : "lame"}, () => {
+            this.setState({legs : "lame"});
+          });
+        });
+      });
+    });
+  }
   // Finances Functions
   // Tasks Functions
   handleTasksChange = (e) => {
@@ -218,7 +248,13 @@ class App extends React.Component {
                     }/>
                     <Route path="/workouts" render={props =>
                         (<Workouts
-                        
+                          chest = {this.state.chest}
+                          back = {this.state.back}
+                          shoulders = {this.state.shoulders}
+                          arms = {this.state.arms}
+                          legs = {this.state.legs}
+                          changeDivName = {this.changeDivName}
+                          refreshWorkouts = {this.refreshWorkouts}
                         />)
                     }/>
                     <Route path="/finances" render={props =>
