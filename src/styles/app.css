@@ -1,36 +1,39 @@
 /* Sections */
-/* body {
-    background-image: url('../assets/back.png');
-    background-position: left;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+body {
+    background-color: #00061a;
+    right: 0;
     width: 100%;
     height: 100%;
     color: white;
-} */
+}
 .App {
-    position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     width: 100%;
     height: 100%;
     font-family: 'MuseoModerno', cursive;
 }
 .sidebar-container {
     position: relative;
-    min-width: 160px;
-    /* width: 35%; */
+    width: 160px;
 }
 .main-container {
     position: relative;
-    min-width: 180px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 150px;
+    padding: 5px;
 }
 .content-container {
     position: relative;
-    min-width: 200px;
-    width: 40%;
+    width: 225px;
+    margin-left: 10px;
 }
-
+.spacer {
+    padding: 5px;
+    /* border: solid 1px white; */
+}
 /* Sidebar Styles */
 .sidebar-content img {
     width: 20px;
@@ -52,10 +55,9 @@
     font-family: 'MuseoModerno', cursive;
     font-size: .8rem;
     border: none;
-    border-bottom:solid .5px #cacbbc;
+    border-bottom:solid .5px #333333;
 }
 .sidebar-form-btn {
-    margin-top: 5px;
     background: none;
     font-family: 'MuseoModerno', cursive;
     color: #c1c1d7;
@@ -88,10 +90,12 @@
 
 /* Main Styles */
 .main-content {
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 .main-content a {
     text-decoration: none;
+    color: #ffb3d9;
+    text-shadow: 0 0 2px white;
 }
 .main-content img {
     width:25px;
@@ -100,10 +104,10 @@
 .main-content ul li {
     display: block;
     margin: 0 auto;
-    margin-top: 2%;
+    margin-top: 15px;
 }
 
-/* Content Styles */
+/* Navigation Styles */
 .navigation-bar-container {
     display: flex;
     flex-direction: row;
@@ -114,9 +118,115 @@
     padding: 5px;
     width: 20px;
 }
-/* .content-view {
-    border: solid 1px red;
+.zero {
+    position: absolute;
+    font-size: .5rem;
+    right: 0;
+    top: 15px;
 }
-.content {
-    border: solid 1px blue;
+/* Workouts Page */
+.exercises {
+    margin-left: 20px;
+    margin-right: 50px;
+}
+.workouts-view h1 {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.workouts-view h2 {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: .8rem;
+}
+.workouts-view table {
+    font-size: .6rem;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.workouts-view table tr td {
+    padding: 3px;
+}
+.lame {
+    padding: 2px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.highlighted {
+    padding: 2px;
+    margin-bottom: 5px;
+    color: #970000;
+    cursor: pointer;
+}
+/* .back:hover {
+    
+}
+.chest:hover {
+    
+}
+.chest:hover {
+    
+}
+.chest:hover {
+    
 } */
+/* Tasks Page */
+.tasks-form textarea {
+    margin-top: 5px;
+    background: none;
+    border: solid .4px;
+    display: block;
+    color: white;
+}
+.tasks-form-btn {
+    background: none;
+    font-family: 'MuseoModerno', cursive;
+    color: #c1c1d7;
+    border: none;
+    transition: 700ms ease-in-out;
+}
+.tasks-form-btn:hover {
+    transition: 700ms ease-in-out;
+    color: #72E5BE;
+}
+.my-tasks {
+    margin-top: 5px;
+}
+.my-tasks-container h1 {
+    cursor: pointer;
+}
+.line {
+    padding: 5px;
+    border-bottom: solid .5px #ffb3d9;
+    cursor: pointer;
+}
+.remove {
+    background: none;
+    border: solid .4px #ffb3d9;
+    padding: 5px;
+    margin-top: 10px;
+    color: #c1c1d7;
+    border-radius: 2mm;
+}
+.remove:hover {
+    color: rgb(20, 151, 20);
+    transition: 700ms ease-in-out;
+}
+.clear {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 100;
+    background-color: #00061a;
+    padding: 20px;
+    margin-top: -15px;
+    border: solid 2px white;
+}
+.choice {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.choice span {
+    margin-top: 5px;
+    cursor: pointer;
+}
