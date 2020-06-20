@@ -137,9 +137,7 @@ class App extends React.Component {
   // Finances Functions
   // Tasks Functions
   handleTasksChange = (e) => {
-    this.setState({tasksvalue : e.target.value}, () => {
-      console.log(this.state.tasksvalue);
-    });
+    this.setState({tasksvalue : e.target.value});
   }
   handleTasksSubmit = (e) => {
     e.preventDefault();
@@ -153,27 +151,24 @@ class App extends React.Component {
         console.log("taskslist ", this.state.taskslist);
     });
   }
-  // completeTask = (index) => {
-  //   if(this.state.complete.includes(this.state.taskslist[index])) {
-  //       const i = this.state.complete.indexOf(this.state.taskslist[index]);
-  //       let complete = this.state.complete;
-  //       complete.splice(i, 1);
-  //       this.setState({complete : complete}, () => {
-  //           console.log("complete ", this.state.complete);
-  //       });
-  //   } else {
-  //       const complete = [...this.state.complete, this.state.taskslist[index]];
-  //       this.setState({complete : complete}, () => {
-  //           console.log("complete ",this.state.complete);
-  //       });
-  //   }
-  // }
-  // removeCompletedTasks = (array) => {
-  //     let taskslist = [], complete = [];
-  //     this.state.taskslist.forEach(item => !this.state.complete.includes(item) ? taskslist.push(item) : item);
-  //     this.setState({taskslist : taskslist});
-  //     this.setState({complete : complete});
-  // }
+  completeTask = (index) => {
+    if(this.state.complete.includes(index)) {
+      const complete = this.state.complete.filter(element => element !== index);
+      this.setState({complete : complete}, () => {
+        console.log(this.state.complete);
+      });
+    } else {
+      const complete = [...this.state.complete, index];
+      this.setState({complete : complete}, () => {
+        console.log(this.state.complete)
+      });
+    }
+  }
+  removeCompletedTasks = () => {
+    const taskslist = this.state.taskslist.filter((task, index) => this.state.complete.indexOf(index) === -1);
+    this.setState({taskslist : taskslist});
+    this.setState({complete : []});
+  }
   // Goals Functions
 
   render() {
@@ -214,6 +209,7 @@ class App extends React.Component {
                         <img src={goals} alt="goals"/>
                     </NavLink>
                 </div>
+                <span className="zero">- No ZER0 days -</span>
                 <div className="content">
                     <Route path="/coding" render={props =>
                         (<Coding
@@ -234,10 +230,11 @@ class App extends React.Component {
                         (<Tasks 
                           tasksvalue = {this.state.tasksvalue} 
                           taskslist = {this.state.taskslist} 
+                          complete = {this.state.complete}
                           handleTasksChange = {this.handleTasksChange}
                           handleTasksSubmit = {this.handleTasksSubmit}
-                          // completeTask = {this.completeTask}
-                          // removeCompletedTasks = {this.removeCompletedTasks}
+                          completeTask = {this.completeTask}
+                          removeCompletedTasks = {this.removeCompletedTasks}
                         />)
                     }/>
                     <Route path="/goals" render={props =>
