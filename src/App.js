@@ -80,6 +80,13 @@ class App extends React.Component {
       },
       set goalslist(value) {
         this._goalslist = value;
+      },
+      _completedsteps : [],
+      get completedsteps() {
+        return this._completedsteps;
+      },
+      set completedsteps(value) {
+        return this._completedsteps = value;
       }
     }
     // Sidebar Binds
@@ -99,17 +106,19 @@ class App extends React.Component {
     this.handleGoalsChange = this.handleGoalsChange.bind(this);
     this.handleGoalsStepsChange = this.handleGoalsStepsChange.bind(this);
     this.handleGoalsSubmit = this.handleGoalsSubmit.bind(this);
+    this.removeGoal = this.removeGoal.bind(this);
+    this.completeSteps = this.completeSteps.bind(this);
   }
-  // componentDidMount() {3
-  //   try {
-  //     const json = localStorage.getItem('landingdata');
-  //     this.setState({...JSON.parse(json)});
-  //   } catch (error) {};
-  // }
-  // componentDidUpdate(prevProps, prevState) {  
-  //   const json = JSON.stringify(this.state);
-  //   localStorage.setItem('landingdata', json);
-  // }
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('landingdata');
+      this.setState({...JSON.parse(json)});
+    } catch (error) {};
+  }
+  componentDidUpdate(prevProps, prevState) {  
+    const json = JSON.stringify(this.state);
+    localStorage.setItem('landingdata', json);
+  }
   // Sidebar Functions
   handleSidebarTitleChange = (e) => {
     this.setState({sidebartitle : e.target.value});
@@ -228,11 +237,14 @@ class App extends React.Component {
     item.done = false;
     this.setState({goalslist : [...this.state.goalslist, item]});
   }
-  removeGoal() {
-
+  removeGoal(goal) {
+    const goalslist = this.state.goalslist.filter(element => element !== goal)
+    this.setState({goalslist : goalslist});
   }
-  completeSteps(){
-
+  completeSteps(goal, step){
+    const item = `${goal}, ${step}`;
+    const completedsteps = this.state.completedsteps.filter(step => step !== item);
+    this.state.completedsteps.includes(item) ? this.setState({completedsteps : completedsteps}) : this.setState({completedsteps : [...this.state.completedsteps, item]});
   }
   // completeTask = (index) => {
   //   if(this.state.complete.includes(index)) {
@@ -327,6 +339,9 @@ class App extends React.Component {
                           goalsvalue = {this.state.goalsvalue}
                           stepsvalue = {this.stepsvalue}
                           goalslist = {this.state.goalslist}
+                          completedsteps = {this.state.completedsteps}
+                          removeGoal = {this.removeGoal}
+                          completeSteps = {this.completeSteps}
                           handleGoalsChange = {this.handleGoalsChange}
                           handleGoalsStepsChange = {this.handleGoalsStepsChange}
                           handleGoalsSubmit = {this.handleGoalsSubmit}

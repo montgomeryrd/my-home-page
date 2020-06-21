@@ -10,11 +10,20 @@ const Goals = (props) => {
         props.goalslist.map((goal, index) => {
             return (
                 <div className="goals-content" unselectable="on" key={index}>
+                    <span className="remove-goal" onClick={() => {props.removeGoal(goal)}}>( X ) </span>
                     <span className="goal">{goal.name}</span>
                     {goal.steps.map((step, position) => {
                         return (
                             <div className="steps" key={position}>
-                                {step}
+                                <span onClick={() => {props.completeSteps(goal.name, step)}}>
+                                    {props.completedsteps.includes(`${goal.name}, ${step}`) ?
+                                        <div>
+                                            <span className="checkmark" role="img" aria-label="checkmark">✅ </span>{step}
+                                        </div>
+                                    :
+                                        <span>{step}</span>
+                                    }
+                                </span>
                             </div>
                         )
                     })}                        

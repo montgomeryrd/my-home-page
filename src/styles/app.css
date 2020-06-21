@@ -261,6 +261,10 @@ body {
 }
 .steps {
     padding: 5px;
+    cursor: pointer;
+}
+.checkmark {
+    color: rgb(72, 255, 0);
 }
 .goals-form input,textarea {
     background: none;
@@ -286,4 +290,13 @@ body {
 .goals-form-btn:hover {
     transition: 700ms ease-in-out;
     color: #72E5BE;
+}
+.remove-goal {
+    font-family: 'Nanum Myeongjo', serif;
+    cursor: pointer;
+    transition: 700ms;
+}
+.remove-goal:hover {
+    color: rgb(246, 66, 66);
+    transition: 700ms;
 }
