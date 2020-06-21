@@ -14,7 +14,7 @@ const Main = (props) => {
                     <a href="https://robinhood.com/" rel="noopener noreferrer" target="_blank"><img src={robinhood} alt="robinhood"/> Robinhood</a>
                 </li>
                 <li className="links">
-                    <a href="https://www.marketwatch.com/" rel="noopener noreferrer" target="_blank"><img src={marketwatch} alt="marketwatch"/> MarketWatch</a>
+                    <a href="https://www.gurufocus.com/" rel="noopener noreferrer" target="_blank"><img src={marketwatch} alt="gurufocus"/> GuruFocus</a>
                 </li>
                 <li className="links">
                     <a href="https://stockmarketpredictionsdaily.com/" rel="noopener noreferrer" target="_blank"><img src={predictions} alt="Surjit Chhabra's Predictions"/> Surjit Chhabra</a>

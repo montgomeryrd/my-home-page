@@ -73,6 +73,7 @@ class App extends React.Component {
       },
       // Goals State
       goalsvalue : "",
+      stepsvalue : "",
       _goalslist : [],
       get goalslist() {
         return this._goalslist;
@@ -95,6 +96,9 @@ class App extends React.Component {
     this.handleTasksChange = this.handleTasksChange.bind(this);
     this.handleTasksSubmit = this.handleTasksSubmit.bind(this);
     // Goals Binds
+    this.handleGoalsChange = this.handleGoalsChange.bind(this);
+    this.handleGoalsStepsChange = this.handleGoalsStepsChange.bind(this);
+    this.handleGoalsSubmit = this.handleGoalsSubmit.bind(this);
   }
   // componentDidMount() {3
   //   try {
@@ -203,6 +207,51 @@ class App extends React.Component {
     this.setState({taskslist : []});
   }
   // Goals Functions
+  handleGoalsChange = (e) => {
+    this.setState({goalsvalue : e.target.value});
+  }
+  handleGoalsStepsChange = (e) => {
+    this.setState({stepsvalue : e.target.value});
+  }
+  handleGoalsSubmit = (e) => {
+    e.preventDefault();
+    this.addGoal(this.state.goalsvalue, this.state.stepsvalue);
+    this.setState({goalsvalue : ""}, () => {
+      this.setState({stepsvalue : ""})
+    });
+  }
+  addGoal(goal, steps) {
+    const item = {};
+    item.name = goal;
+    item.steps = steps.match(/(.+)/g);
+    item.steps = item.steps.filter(step => step !== "");
+    item.done = false;
+    this.setState({goalslist : [...this.state.goalslist, item]});
+  }
+  removeGoal() {
+
+  }
+  completeSteps(){
+
+  }
+  // completeTask = (index) => {
+  //   if(this.state.complete.includes(index)) {
+  //     const complete = this.state.complete.filter(element => element !== index);
+  //     this.setState({complete : complete}, () => {
+  //       console.log(this.state.complete);
+  //     });
+  //   } else {
+  //     const complete = [...this.state.complete, index];
+  //     this.setState({complete : complete}, () => {
+  //       console.log(this.state.complete)
+  //     });
+  //   }
+  // }
+  // removeCompletedTasks = () => {
+  //   const taskslist = this.state.taskslist.filter((task, index) => this.state.complete.indexOf(index) === -1);
+  //   this.setState({taskslist : taskslist});
+  //   this.setState({complete : []});
+  // }
 
   render() {
     return (
@@ -275,7 +324,12 @@ class App extends React.Component {
                     }/>
                     <Route path="/goals" render={props =>
                         (<Goals
-                        
+                          goalsvalue = {this.state.goalsvalue}
+                          stepsvalue = {this.stepsvalue}
+                          goalslist = {this.state.goalslist}
+                          handleGoalsChange = {this.handleGoalsChange}
+                          handleGoalsStepsChange = {this.handleGoalsStepsChange}
+                          handleGoalsSubmit = {this.handleGoalsSubmit}
                         />)
                     }/>
                 </div>
