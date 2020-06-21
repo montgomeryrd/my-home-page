@@ -56,6 +56,7 @@ body {
     font-size: .8rem;
     border: none;
     border-bottom:solid .5px #333333;
+    color: #eee;
 }
 .sidebar-form-btn {
     background: none;
@@ -70,16 +71,25 @@ body {
 }
 .links-container {
     margin-top: 3px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
 }
 .link {
     font-size: .6rem;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: 3px;
-    border-radius: 5mm;
     transition: 700ms;
 }
 .link:hover {
+    color: rgb(246, 66, 66);
+    transition: 700ms;
+}
+.item {
+    font-size: .6rem;
+    margin-left: 3px;
+    transition: 700ms;
+    width: 100px;
+}
+.item:hover {
     color: #72E5BE;
     transition: 700ms;
 }
@@ -124,6 +134,7 @@ body {
     right: 0;
     top: 15px;
 }
+
 /* Workouts Page */
 .exercises {
     margin-left: 20px;
@@ -157,18 +168,7 @@ body {
     color: #970000;
     cursor: pointer;
 }
-/* .back:hover {
-    
-}
-.chest:hover {
-    
-}
-.chest:hover {
-    
-}
-.chest:hover {
-    
-} */
+
 /* Tasks Page */
 .tasks-form textarea {
     margin-top: 5px;
@@ -229,4 +229,61 @@ body {
 .choice span {
     margin-top: 5px;
     cursor: pointer;
+}
+
+/* Goals Page */
+.goals-content {
+    display: block;
+    padding: 10px;
+    border: solid 2px white;
+    margin-top: 5px;
+    border-top-left-radius: 3mm;
+    border-bottom-right-radius: 3mm;
+}
+.goals-content-view h1 {
+    display: block;
+    position: absolute;
+}
+.toggle-goals-form {
+    display: block;
+    text-align: right;
+    margin-right: 20px;
+    font-size: .6rem;
+    cursor: pointer;
+}
+.goalslist {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.goal {
+    font-family: 'Nanum Myeongjo', serif;
+}
+.steps {
+    padding: 5px;
+}
+.goals-form input,textarea {
+    background: none;
+    color: white;
+    border: none;
+    margin-top: 15px;
+    border: #c1c1d7 1px dotted;
+    border-radius: 2mm;
+}
+.goals-form input {
+    width: 220px;
+    border: none;
+    padding: 5px;
+    border-bottom: dotted 1px #c1c1d7;
+}
+.goals-form-btn {
+    background: none;
+    font-family: 'MuseoModerno', cursive;
+    color: #c1c1d7;
+    border: none;
+    transition: 700ms ease-in-out;
+}
+.goals-form-btn:hover {
+    transition: 700ms ease-in-out;
+    color: #72E5BE;
 }

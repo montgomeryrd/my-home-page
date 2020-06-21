@@ -11,14 +11,17 @@ const Sidebar = (props) => {
     const [songtitle, setSongTitle] = useState("");
     const [songlink, setSongLink] = useState("");
     
-    // "sad face - one day" "https://www.youtube.com/embed/nroq3jRSLHg"
-    // "MISSIO - Sing To Me" "https://www.youtube.com/embed/UEK9hRcx-tQ"
+    // sad face - one day "https://www.youtube.com/embed/nroq3jRSLHg"
+    // silent child - fuck you "https://www.youtube.com/embed/L7T6UOkHkJo"
+    // Louis The Child - Better Not "https://www.youtube.com/embed/EoNgd3ofDWc"
+    // Missio - Can I Exist "https://youtube.com/embed/QIH42EbN6g4"
+    // Eden - drugs "https://youtube.com/embed/IjZ75qI5BOk"
 
     const links = props.sidebarlist.length ? (
         props.sidebarlist.map((song, index) => {
             return (
                 <div className="links-container" unselectable="on" key={index}>
-                    <span className="link" onClick={() => {props.removeYouTubeLink(song.title)}}>( - )</span><span className="link" onClick={() => {setShow(true);setSongTitle(song.title);setSongLink(song.link)}}>{song.title}</span>
+                    <span className="link" onClick={() => {props.removeYouTubeLink(song.title)}}>( - )</span><span className="item" onClick={() => {setShow(true);setSongTitle(song.title);setSongLink(song.link)}}>{song.title}</span>
                 </div>
             )
         })
