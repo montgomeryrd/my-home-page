@@ -47,13 +47,23 @@ class App extends React.Component {
       arms : "lame",
       legs : "lame",
       // Finances State
-      financesvalue : "",
-      _financeslist : [],
-      get financeslist() {
-        return this._financeslist;
+      savingsvalue : "",
+      totalvalue : "",
+      _savingslist : [],
+      get savingslist() {
+        return this._savingslist;
       },
-      set financeslist(value) {
-        this._financeslist = value;
+      set savingslist(value) {
+        this._savingslist = value;
+      },
+      stocksvalue : "",
+      stocksinfovalue : "",
+      _stocks : [],
+      get stocks() {
+        return this._stocks;
+      }, 
+      set stocks(value) {
+        this._stocks = value;
       },
       // Tasks State
       tasksvalue : "",
@@ -99,6 +109,13 @@ class App extends React.Component {
     this.changeDivName = this.changeDivName.bind(this);
     this.refreshWorkouts = this.refreshWorkouts.bind(this);
     // Finances Binds
+    this.handleSavingsChange = this.handleSavingsChange.bind(this);
+    this.handleTotalChange = this.handleTotalChange.bind(this);
+    this.handleStocksChange = this.handleStocksChange.bind(this);
+    this.handleStocksInfoChange = this.handleStocksInfoChange.bind(this);
+    this.handleSavingsSubmit = this.handleSavingsSubmit.bind(this);
+    this.handleStocksSubmit = this.handleStocksSubmit.bind(this);
+    this.removeStocks = this.removeStocks.bind(this);
     // Tasks Binds
     this.handleTasksChange = this.handleTasksChange.bind(this);
     this.handleTasksSubmit = this.handleTasksSubmit.bind(this);
@@ -178,6 +195,49 @@ class App extends React.Component {
     });
   }
   // Finances Functions
+  handleSavingsChange = (e) => {
+    this.setState({savingsvalue : e.target.value});
+  }
+  handleTotalChange = (e) => {
+    this.setState({totalvalue : e.target.value});
+  }
+  handleStocksChange = (e) => {
+    this.setState({stocksvalue : e.target.value});
+  }
+  handleStocksInfoChange = (e) => {
+    this.setState({stocksinfovalue : e.target.value});
+  }
+  handleSavingsSubmit = (e) => {
+    e.preventDefault();
+    this.adjustSavings(this.state.savingsvalue, this.state.totalvalue);
+    this.setState({savingsvalue : ""});
+    this.setState({totalvalue : ""});
+  }
+  handleStocksSubmit = (e) => {
+    e.preventDefault();
+    this.adjustStocks(this.state.stocksvalue, this.state.stocksinfovalue);
+    this.setState({stocksvalue : ""});
+    this.setState({stocksinfovalue : ""});
+  }
+  adjustSavings(value, total) {
+    const event = new Date().toDateString();
+    const amount = {};
+    amount.date = event;
+    amount.value = value;
+    amount.total = total;
+    this.setState({savingslist : [amount, ...this.state.savingslist]});
+  }
+  adjustStocks(moniker, information) {
+    const stock = {};
+    stock.moniker = moniker.toUpperCase();
+    stock.information = information;
+    this.setState({stocks : [stock, ...this.state.stocks]});
+  }
+  removeStocks(stock) {
+    const stocks = this.state.stocks.filter(item => item.moniker !== stock);
+    this.setState({stocks : stocks});
+  }
+
   // Tasks Functions
   handleTasksChange = (e) => {
     this.setState({tasksvalue : e.target.value});
@@ -319,7 +379,19 @@ class App extends React.Component {
                     }/>
                     <Route path="/finances" render={props =>
                         (<Finances
-                        
+                          savingsvalue = {this.state.savingsvalue}
+                          totalvalue = {this.state.totalvalue}
+                          stocksvalue = {this.state.stocksvalue}
+                          stocksinfovalue = {this.state.stocksinfovalue}
+                          savingslist = {this.state.savingslist}
+                          stocks = {this.state.stocks}
+                          removeStocks = {this.removeStocks}
+                          handleSavingsChange = {this.handleSavingsChange} 
+                          handleTotalChange = {this.handleTotalChange}
+                          handleStocksChange = {this.handleStocksChange}
+                          handleStocksInfoChange = {this.handleStocksInfoChange}
+                          handleSavingsSubmit = {this.handleSavingsSubmit}
+                          handleStocksSubmit = {this.handleStocksSubmit}
                         />)
                     }/>
                     <Route path="/tasks" render={props =>

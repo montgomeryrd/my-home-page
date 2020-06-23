@@ -2,29 +2,28 @@ import React from 'react';
 
 const StocksForm = (props) => {
     return (
-        <div className="tasksform-content">
-            <form className="tasks-form" onSubmit={props.handleSubmit}>
+        <div className="stocks-form-content">
+            <form className="stocks-form" onSubmit={props.handleStocksSubmit}>
                 <input
-                    id="stocks"
-                    name="stocks"
+                    id="stock"
+                    name="stock"
                     autoComplete="off"
-                    value={props.sidebartitle}
-                    onChange={props.handleSidebarTitleChange}
+                    value={props.stocksvalue}
+                    onChange={props.handleStocksChange}
                     required={true}
-                    placeholder="stock moniker"
+                    placeholder="add stock"
                 />
-                <textarea 
-                    id="tasks" 
-                    name="tasks-list" 
-                    rows="6" 
-                    cols="30"
+                <textarea
+                    id="stock-info"
+                    name="stockinfo"
+                    rows="3"
                     autoComplete="off"
-                    value={props.value}
-                    onChange={props.handleChange}
+                    value={props.stocksinfovalue}
+                    onChange={props.handleStocksInfoChange}
                     required={true}
-                    placeholder="stock data"
+                    placeholder="stock info"
                 />
-                <button className="tasks-form-btn" onSubmit={props.handleSubmit}>add</button>
+                <button className="form-btn" onSubmit={props.handleStocksSubmit}>add</button>
             </form>
         </div>
     )
