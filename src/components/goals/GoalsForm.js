@@ -24,7 +24,7 @@ const GoalsForm = (props) => {
                     required={true}
                     placeholder=" Append Goal Steps"
                 />
-                <button className="goals-form-btn" onSubmit={props.handleGoalsSubmit}>add</button>
+                <button className="form-btn" onSubmit={props.handleGoalsSubmit}>add</button>
             </form>
         </div>
     )

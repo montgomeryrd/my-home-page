@@ -1,22 +1,76 @@
 import React, { useState } from 'react';
+import SavingsForm from './SavingsForm';
+import StocksForm from './StocksForm';
 
 const Finances = (props) => {
     const [savings, setSavings] = useState(false);
     const toggleSavings = () => setSavings(!savings);
 
-    const [stocks, setStocks] = useState(false);
-    const toggleStocks = () => setStocks(!stocks);
+    const [stonks, setStonks] = useState(false);
+    const toggleStonks = () => setStonks(!stonks);
+
+    const savingslist = props.savingslist.length ? (
+        props.savingslist.filter((e,i) => i < 3).map((money, index) => {
+            return (
+                <div className="savings-entry" key={index}>
+                    <h5>{money.date} - ${money.value}</h5>
+                    <span>current savings: ${money.total}</span>
+                </div>
+            );
+        })
+    ) : (
+        <div></div>
+    );
+
+    const positions = props.stocks.length ? (
+        props.stocks.map((stock, index) => {
+            return (
+                <div className="stocks-entry" key={index}>
+                    <h5>{stock.moniker}</h5>
+                    <p>{stock.information}</p>
+                    <p className="sold" onClick={() => {props.removeStocks(stock.moniker)}}>- stock sold -</p>
+                </div>
+            )
+        })
+    ) : (
+        <div></div>
+    )
 
     return (
         <div>
             <h1>finances</h1>
-            <div>
+            <div className="savings-title">
                 <h2>savings:</h2>
-                <span onClick={toggleSavings}>update savings</span>
+                {savings ? <span className="finance-forms" onClick={toggleSavings}>( close form )</span> : <span className="finance-forms" onClick={toggleSavings}>( update savings )</span>}
+                {savings ?
+                    <SavingsForm 
+                        savingsvalue = {props.savingsvalue}
+                        totalvalue = {props.totalvalue}
+                        savingslist = {props.savingslist}
+                        handleSavingsChange = {props.handleSavingsChange} 
+                        handleTotalChange = {props.handleTotalChange}
+                        handleSavingsSubmit = {props.handleSavingsSubmit}
+                    />
+                :
+                    <div></div>
+                }
+                <div className="savings-content">{savingslist}</div>
             </div>
-            <div>
-                <h3>stocks:</h3>
-                <span onClick={toggleStocks}>manage stocks</span>
+            <div className="stocks-title">
+                <h2>my stocks:</h2>
+                {stonks ? <span className="finance-forms" onClick={toggleStonks}>( close form )</span> : <span className="finance-forms" onClick={toggleStonks}>( manage stocks )</span>}
+                {stonks ?
+                    <StocksForm 
+                        stocksvalue = {props.stocksvalue}
+                        stocksinfovalue = {props.stocksinfovalue}
+                        handleStocksChange = {props.handleStocksChange}
+                        handleStocksInfoChange = {props.handleStocksInfoChange}
+                        handleStocksSubmit = {props.handleStocksSubmit}
+                    />
+                :
+                    <div></div>
+                }
+                <div className="stocks-content">{positions}</div>
             </div>
         </div>
     )
