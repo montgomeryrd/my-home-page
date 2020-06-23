@@ -13,15 +13,23 @@ const StocksForm = (props) => {
                     required={true}
                     placeholder="add stock"
                 />
-                <textarea
-                    id="stock-info"
-                    name="stockinfo"
-                    rows="3"
+                <input
+                    id="shares"
+                    name="shares"
                     autoComplete="off"
-                    value={props.stocksinfovalue}
-                    onChange={props.handleStocksInfoChange}
+                    value={props.sharesvalue}
+                    onChange={props.handleSharesChange}
                     required={true}
-                    placeholder="stock info"
+                    placeholder="total shares at $"
+                />
+                <input
+                    id="dividend"
+                    name="dividend"
+                    autoComplete="off"
+                    value={props.dividendvalue}
+                    onChange={props.handleDividendChange}
+                    required={true}
+                    placeholder="dividend yield"
                 />
                 <button className="form-btn" onSubmit={props.handleStocksSubmit}>add</button>
             </form>

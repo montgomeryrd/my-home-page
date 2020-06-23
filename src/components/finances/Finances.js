@@ -27,7 +27,8 @@ const Finances = (props) => {
             return (
                 <div className="stocks-entry" key={index}>
                     <h5>{stock.moniker}</h5>
-                    <p>{stock.information}</p>
+                    <p>{stock.shares}</p>
+                    <p>dividend yield: {stock.dividend}</p>
                     <p className="sold" onClick={() => {props.removeStocks(stock.moniker)}}>- stock sold -</p>
                 </div>
             )
@@ -62,9 +63,11 @@ const Finances = (props) => {
                 {stonks ?
                     <StocksForm 
                         stocksvalue = {props.stocksvalue}
-                        stocksinfovalue = {props.stocksinfovalue}
+                        sharesvalue = {props.sharesvalue}
+                        dividendvalue = {props.dividendvalue}
                         handleStocksChange = {props.handleStocksChange}
-                        handleStocksInfoChange = {props.handleStocksInfoChange}
+                        handleSharesChange = {props.handleSharesChange}
+                        handleDividendChange = {props.handleDividendChange}
                         handleStocksSubmit = {props.handleStocksSubmit}
                     />
                 :

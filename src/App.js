@@ -57,7 +57,8 @@ class App extends React.Component {
         this._savingslist = value;
       },
       stocksvalue : "",
-      stocksinfovalue : "",
+      sharesvalue : "",
+      dividendvalue : "",
       _stocks : [],
       get stocks() {
         return this._stocks;
@@ -112,7 +113,8 @@ class App extends React.Component {
     this.handleSavingsChange = this.handleSavingsChange.bind(this);
     this.handleTotalChange = this.handleTotalChange.bind(this);
     this.handleStocksChange = this.handleStocksChange.bind(this);
-    this.handleStocksInfoChange = this.handleStocksInfoChange.bind(this);
+    this.handleSharesChange = this.handleSharesChange.bind(this);
+    this.handleDividendChange = this.handleDividendChange.bind(this);
     this.handleSavingsSubmit = this.handleSavingsSubmit.bind(this);
     this.handleStocksSubmit = this.handleStocksSubmit.bind(this);
     this.removeStocks = this.removeStocks.bind(this);
@@ -204,8 +206,11 @@ class App extends React.Component {
   handleStocksChange = (e) => {
     this.setState({stocksvalue : e.target.value});
   }
-  handleStocksInfoChange = (e) => {
-    this.setState({stocksinfovalue : e.target.value});
+  handleSharesChange = (e) => {
+    this.setState({sharesvalue : e.target.value});
+  }
+  handleDividendChange = (e) => {
+    this.setState({dividendvalue : e.target.value});
   }
   handleSavingsSubmit = (e) => {
     e.preventDefault();
@@ -215,9 +220,10 @@ class App extends React.Component {
   }
   handleStocksSubmit = (e) => {
     e.preventDefault();
-    this.adjustStocks(this.state.stocksvalue, this.state.stocksinfovalue);
+    this.adjustStocks(this.state.stocksvalue, this.state.sharesvalue, this.state.dividendvalue);
     this.setState({stocksvalue : ""});
-    this.setState({stocksinfovalue : ""});
+    this.setState({sharesvalue : ""});
+    this.setState({dividendvalue : ""});
   }
   adjustSavings(value, total) {
     const event = new Date().toDateString();
@@ -227,10 +233,11 @@ class App extends React.Component {
     amount.total = total;
     this.setState({savingslist : [amount, ...this.state.savingslist]});
   }
-  adjustStocks(moniker, information) {
+  adjustStocks(moniker, shares, dividend) {
     const stock = {};
     stock.moniker = moniker.toUpperCase();
-    stock.information = information;
+    stock.shares = shares;
+    stock.dividend = dividend;
     this.setState({stocks : [stock, ...this.state.stocks]});
   }
   removeStocks(stock) {
@@ -306,24 +313,6 @@ class App extends React.Component {
     const completedsteps = this.state.completedsteps.filter(step => step !== item);
     this.state.completedsteps.includes(item) ? this.setState({completedsteps : completedsteps}) : this.setState({completedsteps : [...this.state.completedsteps, item]});
   }
-  // completeTask = (index) => {
-  //   if(this.state.complete.includes(index)) {
-  //     const complete = this.state.complete.filter(element => element !== index);
-  //     this.setState({complete : complete}, () => {
-  //       console.log(this.state.complete);
-  //     });
-  //   } else {
-  //     const complete = [...this.state.complete, index];
-  //     this.setState({complete : complete}, () => {
-  //       console.log(this.state.complete)
-  //     });
-  //   }
-  // }
-  // removeCompletedTasks = () => {
-  //   const taskslist = this.state.taskslist.filter((task, index) => this.state.complete.indexOf(index) === -1);
-  //   this.setState({taskslist : taskslist});
-  //   this.setState({complete : []});
-  // }
 
   render() {
     return (
@@ -381,15 +370,17 @@ class App extends React.Component {
                         (<Finances
                           savingsvalue = {this.state.savingsvalue}
                           totalvalue = {this.state.totalvalue}
-                          stocksvalue = {this.state.stocksvalue}
-                          stocksinfovalue = {this.state.stocksinfovalue}
                           savingslist = {this.state.savingslist}
+                          stocksvalue = {this.state.stocksvalue}
+                          sharesvalue = {this.state.sharesvalue}
+                          dividendvalue = {this.state.dividendvalue}
                           stocks = {this.state.stocks}
                           removeStocks = {this.removeStocks}
                           handleSavingsChange = {this.handleSavingsChange} 
                           handleTotalChange = {this.handleTotalChange}
                           handleStocksChange = {this.handleStocksChange}
-                          handleStocksInfoChange = {this.handleStocksInfoChange}
+                          handleSharesChange = {this.handleSharesChange}
+                          handleDividendChange = {this.handleDividendChange}
                           handleSavingsSubmit = {this.handleSavingsSubmit}
                           handleStocksSubmit = {this.handleStocksSubmit}
                         />)

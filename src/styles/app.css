@@ -232,11 +232,9 @@ body {
     border-bottom: dotted 1px #eee;
     width: 200px;
     color: white;
+    margin-bottom: 5px;
 }
-.stocks-form textarea {
-    width: 200px;
-    color: white;
-}
+
 /* Tasks Page */
 .tasks-form textarea {
     margin-top: 5px;
