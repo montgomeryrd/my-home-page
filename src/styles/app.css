@@ -134,6 +134,21 @@ body {
     right: 0;
     top: 15px;
 }
+/* Schedule */
+.schedule-list {
+    font-size: .8rem;
+    display: block;
+}
+.schedule-list .head {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+.schedule-list .sub {
+    font-size: .7rem;
+    margin-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+}
 
 /* Workouts Page */
 .exercises {
